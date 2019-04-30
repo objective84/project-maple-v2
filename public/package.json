@@ -1,0 +1,27 @@
+{
+  "name": "project-maple",
+  "version": "1.0.0",
+  "description": "A PassportInc coding challenge",
+  "repository": "https://github.com/phowland1/project-maple-v2.git",
+  "main": "server.js",
+  "scripts": {
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.7.8",
+    "angular-route": "^1.7.8",
+    "angular-cookies": "^1.7.8",
+    "angular-sanitize": "~1.5.3",
+    "ngstorage": "^0.3.11",
+    "ng-lodash": "^0.2.3",
+    "jquery": "^3.4.0",
+    "express": "^4.13.4",
+    "path": "^0.12.7",
+    "socket.io": "^1.4.5",
+    "angular-modal-service": "^0.15.2",
+    "angular-ui-bootstrap": "^2.5.6",
+    "bootstrap": "3.3.7",
+    "font-awesome": "^4.7.0"
+  }
+}
