@@ -1,7 +1,7 @@
 'use strict';
 
 var projectMaple = angular
-    .module('app', [
+    .module('projectMaple', [
         'ngCookies',
         'ngRoute',
         // 'ngSanitize',

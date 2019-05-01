@@ -1,60 +1,79 @@
-<div class="container" id="tree-container" ng-controller="MainController" >
-  <script type="text/ng-template" id="generateModal.html">
-    <div class="modal-body">
-      <form name="generateForm">
-        <label for="item_count">Item Count:</label>
-        <input name="itemCount" id="item_count" type="number" ng-model="count" min="1" max="15" integer>
-        <br/>
-        <span class="error" ng-show="generateForm.itemCount.$error.integer">Whole numbers only please!</span>
-        <span class="error" ng-show="generateForm.itemCount.$error.min || form.size.$error.max"> Must be between 1 and 15</span>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-primary pull-left" ng-click="onGenerateClick()">Generate</button>
-      <button class="btn btn-warning " ng-click="onDeleteClick()">Delete</button>
-    </div>
-  </script>
+<div class="container" id="tree-container" ng-controller="MainController">
+    <script type="text/ng-template" id="generateModal.html">
+        <div class="modal-body">
+            <form name="generateForm">
+                <label for="item_count">Item Count:</label>
+                <input name="itemCount" id="item_count" type="number" ng-model="count" min="1" max="15" integer>
+                <br/>
+                <span class="error" ng-show="generateForm.itemCount.$error.integer">Whole numbers only please!</span>
+                <span class="error" ng-show="generateForm.itemCount.$error.min || form.size.$error.max"> Must be between 1 and 15</span>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary pull-left" ng-click="onGenerateClick()">Generate</button>
+            <button class="btn btn-warning " ng-click="onDeleteClick()">Delete</button>
+        </div>
+    </script>
 
-  <div class="ng-cloak">
-    <ul id="maple">
-      <div class="header"><strong>Factories</strong></div>
-      <ul>
-        <div ng-repeat="factory in factories">
-          <li id="factory_{{factory.id}}">
-            <strong><a ng-click="onGenerateClick(factory.id)">{{factory.name}}</a>({{factory.lowerLimit}} : {{factory.upperLimit}}) </strong>
-            <a ng-click="onEditClick(factory.id)" href="#addFactory">
-              <i class="glyphicon glyphicon-edit"></i></a>
-            <ul>
-              <li ng-repeat="number in factory.numbers track by $index">{{number}}</li>
+    <div class="ng-cloak">
+        <div class="row" id="otherUsers">
+            <div class="col-md-2 col-md-offset-1">
+                <small class="marker">Other Users:</small>
+                <ul class="list-unstyled">
+                    <li class="user"
+                        ng-repeat="user in users track by $index">
+                            <span class='label btn-mini label-default userlabel'>
+                              <i class='fa fa-user'></i>
+                                {{user.nickname}}
+                            </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="header"><strong>Factories</strong></div>
+            <ul id="maple">
+                <ul>
+                    <div ng-repeat="factory in factories">
+                        <li id="factory_{{factory.id}}">
+                            <strong><a ng-click="onGenerateClick(factory.id)">{{factory.name}}</a>
+                                ({{factory.lower}} : {{factory.upper}}) </strong>
+                            <a ng-click="onEditClick(factory.id)" href="#addFactoryForm">
+                                <i class="glyphicon glyphicon-edit"></i></a>
+                            <ul>
+                                <li ng-repeat="number in factory.numbers track by $index">{{number}}</li>
+                            </ul>
+                        </li>
+                    </div>
+                </ul>
             </ul>
-          </li>
+            <div class="row" id="addFactoryPanel">
+                <a id="addFactoryBtn" class="btn btn-primary" data-toggle="collapse" href="#addFactoryForm"
+                   role="button"
+                   aria-expanded="false"
+                   aria-controls="addFactoryForm">Add Factory</a>
+                <div class="collapse" id="addFactoryForm">
+                    <div class="card card-body">
+                        <div class="row">
+                            <label class="col-md-5" for="new-factory-name">Name: </label>
+                            <input type="text" ng-model="factory.name" id="new-factory-name">
+                            <br/>
+
+                            <label class="col-md-5" for="new-factory-lower">Lower Limit: </label>
+                            <input type="number" ng-model="factory.lower" id="new-factory-lower">
+                            <br/>
+
+                            <label class="col-md-5" for="new-factory-upper">Upper Limit: </label>
+                            <input type="number" ng-model="factory.upper" id="new-factory-upper">
+                            <br/>
+
+                            <a id="saveFactory" class="btn btn-primary col-md-offset-9" data-toggle="collapse"
+                               href="#addFactoryForm" role="button" aria-expanded="false"
+                               aria-controls="addFactoryForm" ng-click="onAddClick()">Save</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </ul>
-    </ul>
-    <div id="addFactoryPanel">
-      <a id="addFactoryBtn" class="btn btn-primary" data-toggle="collapse" href="#addFactory" role="button" aria-expanded="false"
-         aria-controls="addFactory">Add Factory</a>
-      <div class="collapse" id="addFactory">
-        <div class="card card-body">
-          <div class="row">
-            <label class="col-md-5" for="new-factory-name">Name: </label>
-            <input type="text" ng-model="factory.name" id="new-factory-name">
-            <br/>
-
-            <label class="col-md-5" for="new-factory-lower">Lower Limit: </label>
-            <input type="number" ng-model="factory.lowerLimit" id="new-factory-lower">
-            <br/>
-
-            <label class="col-md-5" for="new-factory-upper">Upper Limit: </label>
-            <input type="number" ng-model="factory.upperLimit" id="new-factory-upper">
-            <br/>
-
-            <a id="saveFactory" class="btn btn-primary col-md-offset-9" data-toggle="collapse"
-               href="#addFactory" role="button" aria-expanded="false"
-               aria-controls="addFactory" ng-click="onAddClick()">Save</a>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
