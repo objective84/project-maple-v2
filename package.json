@@ -5,7 +5,7 @@
   "repository": "https://github.com/phowland1/project-maple-v2.git",
   "main": "server.js",
   "scripts": {
-    "postinstall": "/node_modules/bower/bin/bower install --prefix ./public"
+    "postinstall": "node_modules/bower/bin/bower install --prefix ./public"
   },
   "author": "",
   "license": "ISC",
