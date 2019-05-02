@@ -144,7 +144,7 @@ io.on('connection', function (socket) {
                     console.log('Database Error: ' + error);
                 //now we can delete the factory
                 console.log('Numbers deleted for factory: ' + data.factoryId);
-                conn.query('delete from factory f where f.factoryId = ?',
+                conn.query('delete from factory where factoryId = ?',
                     [data.factoryId],
                     (error, result, fields) => {
                         if (error)

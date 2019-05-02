@@ -1,7 +1,7 @@
 projectMaple.controller('AddFactoryController', ['$scope', '$http', '$uibModalInstance', 'items', 'socket',
     function ($scope, $http, $uibModalInstance, items, socket) {
         $scope.factory = items.factory || {
-            id: null,
+            factoryId: null,
             name: "",
             upper: 300,
             lower: 1,

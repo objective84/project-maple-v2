@@ -10,13 +10,13 @@ projectMaple.controller('MainController', ['$scope', '$localStorage', '$http', '
         });
 
         socket.on('new-factory', (data) => {
-            if (!_.find($scope.factories, {'id': data.id}))
+            if (!_.find($scope.factories, {'factoryId': data.factoryId}))
                 $scope.factories.push(data);
         });
 
         socket.on('update-factory', (data) => {
             _.each($scope.factories, function (factory) {
-                if (factory.id === data.id) {
+                if (factory.factoryId === data.factoryId) {
                     factory.name = data.name;
                     factory.upper = data.upper;
                     factory.lower = data.lower;
@@ -28,18 +28,17 @@ projectMaple.controller('MainController', ['$scope', '$localStorage', '$http', '
 
         socket.on('delete-factory', (data) => {
             _.remove($scope.factories, (factory) => {
-                return factory.id === data;
+                return factory.factoryId === data;
             })
         });
 
-        $scope.onGenerateClick = function (id) {
+        $scope.onGenerateClick = function (factoryId) {
             const modalInstance = $uibModal.open({
                 templateUrl: 'generateModal.html',
                 controller: 'GenerateController',
-                id: 'generateModal',
                 resolve: {
                     items: {
-                        id: id
+                        factoryId: factoryId
                     }
                 }
             });
@@ -50,9 +49,9 @@ projectMaple.controller('MainController', ['$scope', '$localStorage', '$http', '
             });
         };
 
-        $scope.onEditClick = function (id) {
+        $scope.onEditClick = function (factoryId) {
             _.each($scope.factories, function (factory) {
-                if (factory.id === id) {
+                if (factory.factoryId === factoryId) {
                     openAddEditModal(factory);
                     return true;
                 }
@@ -67,7 +66,6 @@ projectMaple.controller('MainController', ['$scope', '$localStorage', '$http', '
             const modalInstance = $uibModal.open({
                 templateUrl: 'addFactoryModal.html',
                 controller: 'AddFactoryController',
-                id: 'addFactoryModal',
                 resolve: {
                     items: {
                         factory: factory
