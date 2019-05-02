@@ -5,7 +5,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const mysql = require('mysql');
 const _ = require('lodash');
-const port = 8080;
+const port = process.env.PORT || 8080;
 const conn = mysql.createConnection({
     host: "us-cdbr-iron-east-02.cleardb.net",
     port: '3306',
