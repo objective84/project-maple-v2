@@ -6,7 +6,7 @@
                 <input name="itemCount" id="item_count" type="number" ng-model="count" min="1" max="15" ng-pattern="/^-?[1-9][^\.]*$/">
                 <br/>
                 <span class="error" ng-show="generateForm.itemCount.$error.pattern">Whole numbers only please!</span>
-                <span class="error" ng-show="generateForm.itemCount.$error.min || form.size.$error.max"> Must be between 1 and 15</span>
+                <span class="error" ng-show="generateForm.itemCount.$error.min || generateForm.itemCount.$error.max"> Must be between 1 and 15</span>
             </form>
         </div>
         <div class="modal-footer">
