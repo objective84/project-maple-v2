@@ -1,0 +1,24 @@
+{
+  "name": "project-maple",
+  "description": "A PassportInc coding challenge",
+  "main": "server.js",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components"
+  ],
+  "dependencies": {
+    "angular": "^1.7.8",
+    "bootstrap": "~3.3.6",
+    "angular-cookies": "^1.7.8",
+    "angular-modal-service": "^0.15.2",
+    "angular-route": "^1.7.8",
+    "angular-bootstrap": "^2.5.0",
+    "ng-lodash": "^0.2.3",
+    "ngstorage": "^0.3.11",
+    "angular-animate": "1.7.8",
+    "jquery": "^3.4.0"
+  }
+}

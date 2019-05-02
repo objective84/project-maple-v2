@@ -21,7 +21,10 @@ ul#maple{
 }
 #factory-list{
   width:60%;
-  align-content: center;
+}
+
+#factory-list div{
+  width: 100%;
 }
 
 .modal-dialog {
