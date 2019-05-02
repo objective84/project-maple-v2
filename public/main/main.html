@@ -42,10 +42,10 @@
             <ul id="maple">
                 <ul>
                     <div ng-repeat="factory in factories track by $index">
-                        <li id="factory_{{factory.id}}">
-                            <strong><a ng-click="onGenerateClick(factory.id)">{{factory.name}}</a>
+                        <li id="factory_{{factory.factoryId}}">
+                            <strong><a ng-click="onGenerateClick(factory.factoryId)">{{factory.name}}</a>
                                 ({{factory.lower}} : {{factory.upper}}) </strong>
-                            <a ng-click="onEditClick(factory.id)" role="button">
+                            <a ng-click="onEditClick(factory.factoryId)" role="button">
                                 <i class="glyphicon glyphicon-edit"></i></a>
                             <ul>
                                 <li ng-repeat="number in factory.numbers track by $index">{{number}}</li>

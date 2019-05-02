@@ -6,14 +6,14 @@ projectMaple.controller('GenerateController', ['$scope', '$http', '$uibModalInst
         $scope.onGenerateClick = function () {
             if ($scope.generateForm.itemCount.$invalid) return;
             socket.emit('generate', {
-                id: items.id,
+                factoryId: items.factoryId,
                 count: $scope.count
             });
             $uibModalInstance.close();
         };
         $scope.onDeleteClick = function () {
             socket.emit('delete-factory', {
-                id: items.id
+                factoryId: items.factoryId
             });
             $uibModalInstance.close();
         }
