@@ -20,6 +20,7 @@ conn.connect(function (err) {
 
 app.use(express.static(path.join(__dirname, "public")));
 
+
 io.on('connection', function (socket) {
     console.log('new connection made');
     //Upon connecting, a new socket needs a list of all factories, so assemble the list and send it to the new socket
