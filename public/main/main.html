@@ -11,7 +11,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary pull-left" ng-click="onGenerateClick()">Generate</button>
+            <button class="btn btn-primary pull-left" ng-disabled="generateForm.$invalid" ng-click="onGenerateClick()">Generate</button>
             <button class="btn btn-warning " ng-click="onDeleteClick()">Delete</button>
         </div>
     </script>
@@ -22,7 +22,7 @@
                 <div class="row" id="new-factory-name" >
                     <label class="col-md-6" for="factoryName">Name: </label>
                     <input name="name" class="col-md-6" type="text" ng-model="factory.name" id="factoryName" ng-required="true" >
-                    <span class="error col-md-12"  ng-show="addEditForm.name.$touched && addEditForm.name.$invalid">Required</span>
+                    <span class="error col-md-12"  ng-show="(addEditForm.name.$touched || addEditForm.submitAttemped) && addEditForm.name.$invalid">Required</span>
                 </div>
                 <div class="row" id="new-factory-lower">
                     <label class="col-md-6" for="factoryLower">Lower Limit: </label>
