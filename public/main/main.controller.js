@@ -15,7 +15,7 @@ projectMaple.controller('MainController', ['$scope', '$localStorage', '$http', '
         });
 
         socket.on('update-factory', (data) => {
-            _.each($scope.factories, function (factory) {
+            _.each($scope.factories, (factory) => {
                 if (factory.factoryId === data.factoryId) {
                     factory.name = data.name;
                     factory.upper = data.upper;
@@ -32,7 +32,7 @@ projectMaple.controller('MainController', ['$scope', '$localStorage', '$http', '
             })
         });
 
-        $scope.onGenerateClick = function (factoryId) {
+        $scope.onGenerateClick = (factoryId) => {
             const modalInstance = $uibModal.open({
                 templateUrl: 'generateModal.html',
                 controller: 'GenerateController',
@@ -44,13 +44,13 @@ projectMaple.controller('MainController', ['$scope', '$localStorage', '$http', '
             });
 
             modalInstance.result.then(() => {
-            }, function () {
+            }, () => {
                 $log.info('Modal dismissed at: ' + new Date());
             });
         };
 
-        $scope.onEditClick = function (factoryId) {
-            _.each($scope.factories, function (factory) {
+        $scope.onEditClick = (factoryId) => {
+            _.each($scope.factories, (factory) => {
                 if (factory.factoryId === factoryId) {
                     openAddEditModal(factory);
                     return true;
@@ -58,7 +58,7 @@ projectMaple.controller('MainController', ['$scope', '$localStorage', '$http', '
             });
         };
 
-        $scope.onAddFactoryBtnClick = function () {
+        $scope.onAddFactoryBtnClick = () => {
             openAddEditModal(null);
         };
 
@@ -74,7 +74,7 @@ projectMaple.controller('MainController', ['$scope', '$localStorage', '$http', '
             });
 
             modalInstance.result.then(() => {
-            }, function () {
+            }, () => {
                 $log.info('Add/Edit modal dismissed at: ' + new Date());
             });
         }

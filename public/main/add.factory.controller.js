@@ -1,3 +1,5 @@
+'use strict';
+
 projectMaple.controller('AddFactoryController', ['$scope', '$http', '$uibModalInstance', 'items', 'socket',
     function ($scope, $http, $uibModalInstance, items, socket) {
         $scope.factory = items.factory || {
@@ -8,7 +10,7 @@ projectMaple.controller('AddFactoryController', ['$scope', '$http', '$uibModalIn
             numbers: []
         };
 
-        $scope.onSaveBtnClick = function () {
+        $scope.onSaveBtnClick = () => {
             if ($scope.factory.lower >= $scope.factory.upper) {
                 $scope.addEditForm.upper.$error.minMax = true;
                 return;

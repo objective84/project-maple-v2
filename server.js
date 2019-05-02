@@ -7,6 +7,7 @@ const mysql = require('mysql');
 const _ = require('lodash');
 const port = process.env.PORT || 8080;
 let conn = null;
+app.use(express.static(path.join(__dirname, "public")));
 let db_config = {
     host: "us-cdbr-iron-east-02.cleardb.net",
     port: '3306',
@@ -16,36 +17,31 @@ let db_config = {
 };
 
 //Prevents the app from crashing do to a database disconnect
-function handleDisconnect() {
+const handleDisconnect = () => {
     conn = mysql.createConnection(db_config);
 
     //On connection attempt
-    conn.connect(function (err) {
+    conn.connect( (err) =>{
         if (err) {
-            console.log('Error when connecting to db:', err);
+            console.log('Error when connecting to db:' + err);
             setTimeout(handleDisconnect, 10000);
         } else
             console.log("Connected to database!");
-
     });
 
     //If the database returns a connection-lost error, reconnect
-    conn.on('error', function (err) {
-        console.log('Database error', err);
+    conn.on('error', (err) => {
+        console.log('Database error' + err);
         if (err.code === 'PROTOCOL_CONNECTION_LOST')
             handleDisconnect();
         else
             throw err;
-
     });
-}
+};
 
 handleDisconnect();
 
-app.use(express.static(path.join(__dirname, "public")));
-
-
-io.on('connection', function (socket) {
+io.on('connection', (socket) =>{
     try {
         console.log('new connection made');
         //Upon connecting, a new socket needs a list of all factories, so assemble the list and send it to the new socket
@@ -84,7 +80,7 @@ io.on('connection', function (socket) {
     }
 
     //Adds or edits a factory
-    socket.on('add-factory', function (data) {
+    socket.on('add-factory', (data) => {
         try {
             if (!data.name || !data.upper || !data.lower) return; //Extra validation to prevent bad data
             console.log('Adding/Editing factory');
@@ -119,7 +115,7 @@ io.on('connection', function (socket) {
     });
 
     //Generates N random numbers
-    socket.on('generate', function (data) {
+    socket.on('generate', (data) =>{
         try {
             if (!data.count || data.count <= 0) return; //Extra validation
             console.log('Generating numbers for factory: ' + data.factoryId);
@@ -173,7 +169,7 @@ io.on('connection', function (socket) {
 
     //Delete a factory
     try {
-        socket.on('delete-factory', function (data) {
+        socket.on('delete-factory', (data) => {
             console.log('Deleting factory: ' + data.factoryId);
             //first delete all numbers associated with this factory (if any)
             conn.query('delete from factory_numbers where factoryId = ?',
@@ -202,7 +198,7 @@ io.on('connection', function (socket) {
     }
 });
 
-server.listen(port, function () {
+server.listen(port, () => {
     console.log("Listening on port " + port);
 });
 

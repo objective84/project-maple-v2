@@ -11,7 +11,9 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary pull-left" ng-disabled="generateForm.$invalid" ng-click="onGenerateClick()">Generate</button>
+            <button class="btn btn-primary pull-left" ng-disabled="generateForm.$invalid" ng-click="onGenerateClick()">
+                Generate
+            </button>
             <button class="btn btn-warning " ng-click="onDeleteClick()">Delete</button>
         </div>
     </script>
@@ -19,21 +21,26 @@
     <script type="text/ng-template" id="addFactoryModal.html">
         <div id="addFactoryModal" class="modal-body">
             <form name="addEditForm">
-                <div class="row" id="new-factory-name" >
+                <div class="row" id="new-factory-name">
                     <label class="col-md-6" for="factoryName">Name: </label>
-                    <input name="name" class="col-md-6" type="text" ng-model="factory.name" id="factoryName" ng-required="true" >
-                    <span class="error col-md-12"  ng-show="(addEditForm.name.$touched || addEditForm.submitAttemped) && addEditForm.name.$invalid">Required</span>
+                    <input name="name" class="col-md-6" type="text" ng-model="factory.name" id="factoryName"
+                           ng-required="true">
+                    <span class="error col-md-12"
+                          ng-show="(addEditForm.name.$touched || addEditForm.submitAttemped) && addEditForm.name.$invalid">Required</span>
                 </div>
                 <div class="row" id="new-factory-lower">
                     <label class="col-md-6" for="factoryLower">Lower Limit: </label>
-                    <input name="lower" class="col-md-6" type="number" id="factoryLower" ng-model="factory.lower" ng-required="true">
-                    <span class="error col-md-12"  ng-show="addEditForm.lower.$touched && addEditForm.lower.$invalid">Required</span>
+                    <input name="lower" class="col-md-6" type="number" id="factoryLower" ng-model="factory.lower"
+                           ng-required="true">
+                    <span class="error col-md-12" ng-show="addEditForm.lower.$touched && addEditForm.lower.$invalid">Required</span>
                 </div>
                 <div class="row" id="new-factory-upper">
                     <label class="col-md-6" for="factoryUpper">Upper Limit: </label>
-                    <input name="upper" class="col-md-6" type="number" id="factoryUpper" ng-model="factory.upper" ng-required="true">
+                    <input name="upper" class="col-md-6" type="number" id="factoryUpper" ng-model="factory.upper"
+                           ng-required="true">
                     <span class="error col-md-12" ng-show="addEditForm.upper.$error.minMax">Upper range must be greater than lower</span>
-                    <span class="error col-md-12"  ng-show="addEditForm.upper.$touched && addEditForm.upper.$invalid && !addEditForm.upper.$error.minMax">Required</span>
+                    <span class="error col-md-12"
+                          ng-show="addEditForm.upper.$touched && addEditForm.upper.$invalid && !addEditForm.upper.$error.minMax">Required</span>
                 </div>
             </form>
         </div>
@@ -47,19 +54,17 @@
         <div id="factory-list" class="row row-align-center">
             <div class="header"><strong>Factories</strong></div>
             <ul id="maple">
-                <ul>
-                    <div ng-repeat="factory in factories track by $index">
-                        <li id="factory_{{factory.factoryId}}">
-                            <strong><a ng-click="onGenerateClick(factory.factoryId)">{{factory.name}}</a>
-                                ({{factory.lower}} : {{factory.upper}}) </strong>
-                            <a ng-click="onEditClick(factory.factoryId)" role="button">
-                                <i class="glyphicon glyphicon-edit"></i></a>
-                            <ul>
-                                <li ng-repeat="number in factory.numbers track by $index">{{number}}</li>
-                            </ul>
-                        </li>
-                    </div>
-                </ul>
+                <div ng-repeat="factory in factories track by $index">
+                    <li id="factory_{{factory.factoryId}}">
+                        <strong><a ng-click="onGenerateClick(factory.factoryId)">{{factory.name}}</a>
+                            ({{factory.lower}} : {{factory.upper}}) </strong>
+                        <a ng-click="onEditClick(factory.factoryId)" role="button">
+                            <i class="glyphicon glyphicon-edit"></i></a>
+                        <ul>
+                            <li ng-repeat="number in factory.numbers track by $index">{{number}}</li>
+                        </ul>
+                    </li>
+                </div>
             </ul>
             <a id="addFactoryBtn" class="btn btn-primary" ng-click="onAddFactoryBtnClick()">Add Factory</a>
         </div>
