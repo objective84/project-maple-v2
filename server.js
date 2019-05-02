@@ -7,10 +7,10 @@ const mysql = require('mysql');
 const _ = require('lodash');
 const port = 8080;
 const conn = mysql.createConnection({
-    host: "127.0.0.1",
+    host: "172.20.10.7",
     port: '3306',
     database: 'maple',
-    user: "root",
+    user: "maple",
     password: "objective84"
 });
 conn.connect(function (err) {
