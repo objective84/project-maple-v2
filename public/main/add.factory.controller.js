@@ -8,7 +8,13 @@ projectMaple.controller('AddFactoryController', ['$scope', '$http', '$uibModalIn
             numbers: []
         };
 
-        $scope.onSaveBtnClick = function() {
+        $scope.onSaveBtnClick = function () {
+            if ($scope.factory.lower >= $scope.factory.upper) {
+                $scope.addEditForm.upper.$error.minMax = true;
+                return;
+            } else
+                $scope.addEditForm.lower.$error.minMax = false;
+
             socket.emit("add-factory", $scope.factory);
             $uibModalInstance.close();
         }

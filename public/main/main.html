@@ -3,7 +3,8 @@
         <div id="generateModal" class="modal-body">
             <form name="generateForm">
                 <label for="item_count">Item Count:</label>
-                <input name="itemCount" id="item_count" type="number" ng-model="count" min="1" max="15" ng-pattern="/^-?[1-9][^\.]*$/">
+                <input name="itemCount" id="item_count" type="number" ng-model="count" min="1" max="15"
+                       ng-pattern="/^-?[1-9][^\.]*$/">
                 <br/>
                 <span class="error" ng-show="generateForm.itemCount.$error.pattern">Whole numbers only please!</span>
                 <span class="error" ng-show="generateForm.itemCount.$error.min || generateForm.itemCount.$error.max"> Must be between 1 and 15</span>
@@ -17,18 +18,21 @@
 
     <script type="text/ng-template" id="addFactoryModal.html">
         <div id="addFactoryModal" class="modal-body">
-            <div class="row">
-                <label class="col-md-6" for="new-factory-name">Name: </label>
-                <input class="col-md-6" type="text" ng-model="factory.name" id="new-factory-name">
-            </div>
-            <div class="row">
-                <label class="col-md-6" for="new-factory-lower">Lower Limit: </label>
-                <input class="col-md-6" type="number" ng-model="factory.lower" id="new-factory-lower">
-            </div>
-            <div class="row">
-                <label class="col-md-6" for="new-factory-upper">Upper Limit: </label>
-                <input class="col-md-6" type="number" ng-model="factory.upper" id="new-factory-upper">
-            </div>
+            <form name="addEditForm">
+                <div class="row">
+                    <label class="col-md-6" for="new-factory-name">Name: </label>
+                    <input class="col-md-6" type="text" ng-model="factory.name" id="new-factory-name">
+                </div>
+                <div class="row">
+                    <label class="col-md-6" for="new-factory-lower">Lower Limit: </label>
+                    <input name="lower" class="col-md-6" type="number" ng-model="factory.lower" id="new-factory-lower">
+                </div>
+                <div class="row">
+                    <label class="col-md-6" for="new-factory-upper">Upper Limit: </label>
+                    <input name="upper" class="col-md-6" type="number" ng-model="factory.upper" id="new-factory-upper">
+                    <span class="error col-md-12" ng-show="addEditForm.upper.$error.minMax">Upper range must be greater than lower</span>
+                </div>
+            </form>
         </div>
         <div class="modal-footer">
             <a id="saveFactory" class="btn btn-primary pull-right"
