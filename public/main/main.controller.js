@@ -10,13 +10,13 @@ projectMaple.controller('MainController', ['$scope', '$localStorage', '$http', '
         });
 
         socket.on('new-factory', (data) => {
-            if (!_.find($scope.factories, {'factoryId': data.factoryId}))
+            if (!_.find($scope.factories, {'id': data.id}))
                 $scope.factories.push(data);
         });
 
         socket.on('update-factory', (data) => {
             _.each($scope.factories, function (factory) {
-                if (factory.factoryId === data.factoryId) {
+                if (factory.id === data.id) {
                     factory.name = data.name;
                     factory.upper = data.upper;
                     factory.lower = data.lower;
@@ -28,18 +28,18 @@ projectMaple.controller('MainController', ['$scope', '$localStorage', '$http', '
 
         socket.on('delete-factory', (data) => {
             _.remove($scope.factories, (factory) => {
-                return factory.factoryId === data;
+                return factory.id === data;
             })
         });
 
-        $scope.onGenerateClick = function (factoryId) {
+        $scope.onGenerateClick = function (id) {
             const modalInstance = $uibModal.open({
                 templateUrl: 'generateModal.html',
                 controller: 'GenerateController',
                 id: 'generateModal',
                 resolve: {
                     items: {
-                        factoryId: factoryId
+                        id: id
                     }
                 }
             });
@@ -50,9 +50,9 @@ projectMaple.controller('MainController', ['$scope', '$localStorage', '$http', '
             });
         };
 
-        $scope.onEditClick = function (factoryId) {
+        $scope.onEditClick = function (id) {
             _.each($scope.factories, function (factory) {
-                if (factory.factoryId === factoryId) {
+                if (factory.id === id) {
                     openAddEditModal(factory);
                     return true;
                 }
