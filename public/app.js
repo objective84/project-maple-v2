@@ -4,7 +4,6 @@ let projectMaple = angular
     .module('projectMaple', [
         'ngCookies',
         'ngRoute',
-        // 'ngSanitize',
         'ngStorage',
         'ngLodash',
         'ui.bootstrap'])
@@ -16,6 +15,7 @@ let projectMaple = angular
                 controller: 'MainController'
             })
             .otherwise({
-                redirectTo: '/main'
+                templateUrl: 'main/main.html',
+                controller: 'MainController'
             });
     });
