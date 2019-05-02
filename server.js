@@ -6,17 +6,41 @@ const io = require('socket.io')(server);
 const mysql = require('mysql');
 const _ = require('lodash');
 const port = process.env.PORT || 8080;
-const conn = mysql.createConnection({
+let conn = null;
+let db_config = {
     host: "us-cdbr-iron-east-02.cleardb.net",
     port: '3306',
     database: 'heroku_b7b4fb058339645',
     user: "bc9a70a27c9657",
     password: "c866efb8"
-});
-conn.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
+};
+
+//Prevents the app from crashing do to a database disconnect
+function handleDisconnect() {
+    conn = mysql.createConnection(db_config);
+
+    //On connection attempt
+    conn.connect(function (err) {
+        if (err) {
+            console.log('Error when connecting to db:', err);
+            setTimeout(handleDisconnect, 10000);
+        } else
+            console.log("Connected to database!");
+
+    });
+
+    //If the database returns a connection-lost error, reconnect
+    conn.on('error', function (err) {
+        console.log('Database error', err);
+        if (err.code === 'PROTOCOL_CONNECTION_LOST')
+            handleDisconnect();
+        else
+            throw err;
+
+    });
+}
+
+handleDisconnect();
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -62,6 +86,7 @@ io.on('connection', function (socket) {
     //Adds or edits a factory
     socket.on('add-factory', function (data) {
         try {
+            if (!data.name || !data.upper || !data.lower) return; //Extra validation to prevent bad data
             console.log('Adding/Editing factory');
             if (_.isNull(data.factoryId)) {
                 //if the id is null, then this is a new factory so insert it
@@ -96,6 +121,7 @@ io.on('connection', function (socket) {
     //Generates N random numbers
     socket.on('generate', function (data) {
         try {
+            if (!data.count || data.count <= 0) return; //Extra validation
             console.log('Generating numbers for factory: ' + data.factoryId);
             //first get the factory so we have the upper and lower limits
             conn.query('select * from factory where factoryId = ?',

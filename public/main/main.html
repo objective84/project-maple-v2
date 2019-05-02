@@ -19,18 +19,21 @@
     <script type="text/ng-template" id="addFactoryModal.html">
         <div id="addFactoryModal" class="modal-body">
             <form name="addEditForm">
-                <div class="row">
-                    <label class="col-md-6" for="new-factory-name">Name: </label>
-                    <input class="col-md-6" type="text" ng-model="factory.name" id="new-factory-name">
+                <div class="row" id="new-factory-name" >
+                    <label class="col-md-6" for="factoryName">Name: </label>
+                    <input name="name" class="col-md-6" type="text" ng-model="factory.name" id="factoryName" ng-required="true" >
+                    <span class="error col-md-12"  ng-show="addEditForm.name.$touched && addEditForm.name.$invalid">Required</span>
                 </div>
-                <div class="row">
-                    <label class="col-md-6" for="new-factory-lower">Lower Limit: </label>
-                    <input name="lower" class="col-md-6" type="number" ng-model="factory.lower" id="new-factory-lower">
+                <div class="row" id="new-factory-lower">
+                    <label class="col-md-6" for="factoryLower">Lower Limit: </label>
+                    <input name="lower" class="col-md-6" type="number" id="factoryLower" ng-model="factory.lower" ng-required="true">
+                    <span class="error col-md-12"  ng-show="addEditForm.lower.$touched && addEditForm.lower.$invalid">Required</span>
                 </div>
-                <div class="row">
-                    <label class="col-md-6" for="new-factory-upper">Upper Limit: </label>
-                    <input name="upper" class="col-md-6" type="number" ng-model="factory.upper" id="new-factory-upper">
+                <div class="row" id="new-factory-upper">
+                    <label class="col-md-6" for="factoryUpper">Upper Limit: </label>
+                    <input name="upper" class="col-md-6" type="number" id="factoryUpper" ng-model="factory.upper" ng-required="true">
                     <span class="error col-md-12" ng-show="addEditForm.upper.$error.minMax">Upper range must be greater than lower</span>
+                    <span class="error col-md-12"  ng-show="addEditForm.upper.$touched && addEditForm.upper.$invalid && !addEditForm.upper.$error.minMax">Required</span>
                 </div>
             </form>
         </div>

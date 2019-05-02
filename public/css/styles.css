@@ -52,8 +52,13 @@ ul#maple{
   margin-left: 10px;
 }
 
-#addFactoryModal input{
+#addFactoryModal .row{
   margin-bottom: 5px;
+}
+
+#factory-list ul{
+  max-height: 600px;
+  overflow-y: scroll;
 }
 
 

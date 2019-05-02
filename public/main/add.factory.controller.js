@@ -14,7 +14,7 @@ projectMaple.controller('AddFactoryController', ['$scope', '$http', '$uibModalIn
                 return;
             } else
                 $scope.addEditForm.lower.$error.minMax = false;
-
+            if($scope.addEditForm.$invalid) return;
             socket.emit("add-factory", $scope.factory);
             $uibModalInstance.close();
         }
