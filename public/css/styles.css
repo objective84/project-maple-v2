@@ -19,28 +19,38 @@ ul#maple{
   line-height: 40px;
   padding-left: 10px;
 }
+#factory-list{
+  width:60%;
+  align-content: center;
+}
 
 .modal-dialog {
-  width: 220px;
+  width: 300px;
+}
+
+.modal-body{
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.modal-footer{
+  padding: 10px 15px 10px 15px;
 }
 
 .modal-dialog span.error{
   color: red;
 }
 
-/*Start add factory*/
-#addFactoryPanel{
-  margin-left: 40px;
-}
-#addFactoryForm .row{
-  width: 30%;
-  margin: 5px 5px 5px 5px;
-  border: black 1px solid;
-  padding: 10px 0 10px 0;
-}
-#addFactory input{
-  margin-bottom: 10px;
+.modal-dialog div{
+  width: 100%;
 }
 
-/*End add factory*/
+#addFactoryModal{
+  margin-left: 10px;
+}
+
+#addFactoryModal input{
+  margin-bottom: 5px;
+}
+
 

@@ -4,17 +4,17 @@ projectMaple.controller('GenerateController', ['$scope', '$http', '$uibModalInst
         $scope.count = 1;
 
         $scope.onGenerateClick = function () {
-            // if ($scope.generateForm.itemCount.$error) return;
-            socket.emit('generate',{
-                factoryId: items.id,
+            if ($scope.generateForm.itemCount.$invalid) return;
+            socket.emit('generate', {
+                factoryId: items.factoryId,
                 count: $scope.count
             });
             $uibModalInstance.close();
         };
         $scope.onDeleteClick = function () {
-            $http.post(url + /delete/ + items.id, null)
-                .then(function () {
-                    $uibModalInstance.close();
-                })
+            socket.emit('delete-factory', {
+                factoryId: items.factoryId
+            });
+            $uibModalInstance.close();
         }
     }]);

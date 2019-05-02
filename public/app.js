@@ -1,6 +1,6 @@
 'use strict';
 
-var projectMaple = angular
+let projectMaple = angular
     .module('projectMaple', [
         'ngCookies',
         'ngRoute',
